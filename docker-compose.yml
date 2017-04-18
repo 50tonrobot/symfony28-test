@@ -18,6 +18,7 @@ services:
           context: .
           dockerfile: Dockerfile-php
         volumes:
+            - ./code:/code-copy
             - ./config/php.ini:/usr/local/etc/php/php.ini
         networks:
             - code-network

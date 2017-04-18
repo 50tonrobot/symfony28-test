@@ -1,0 +1,4 @@
+services:
+#    nasa.example:
+#        class: Neo\NasaBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
