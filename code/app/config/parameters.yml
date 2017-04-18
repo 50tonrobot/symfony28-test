@@ -1,0 +1,5 @@
+# This file is auto-generated during the composer install
+parameters:
+    secret: JU5Oq1V5nW0xVO7AMk760gpiOI80HbuysRxSlLhOjjvqLmZwMXTYmsgfjutaDRhv
+    mongodb.server: 'mongodb://localhost:27017'
+    mongodb.default_database: test
