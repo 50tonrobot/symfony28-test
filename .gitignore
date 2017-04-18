@@ -7,6 +7,5 @@ code/app/logs/*
 !code/app/logs/.gitkeep
 code/app/phpunit.xml
 code/build/
-code/vendor/
 code/bin/
 .DS_Store

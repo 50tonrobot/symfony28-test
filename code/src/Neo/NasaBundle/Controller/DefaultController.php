@@ -13,6 +13,6 @@ class DefaultController extends Controller
      */
     public function helloAction()
     {
-        return new JsonResponse(array('hello' => 'world'));
+	return new JsonResponse(array('hello' => 'world'));
     }
 }

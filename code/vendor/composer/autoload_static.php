@@ -215,6 +215,17 @@ class ComposerStaticInit0a55488c6f37662c9201d594480a0465
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
             ),
         ),
+        'G' => 
+        array (
+            'Guzzle\\Tests' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/tests',
+            ),
+            'Guzzle' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
+            ),
+        ),
         'D' => 
         array (
             'Doctrine\\ODM\\MongoDB' => 
