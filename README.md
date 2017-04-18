@@ -53,7 +53,7 @@ Access the project with your favourite browser. You should see similar welcome s
 
 1. Create a new Bundle "NasaBundle" within the namespace "Neo"
 
-1. Create a default controller with a method helloAction 
+1. Create a default controller with a method helloAction
   * under `Nasa` namespace
   * for route `/`
   * with a proper json return `{"hello":"world!"}`
@@ -61,7 +61,7 @@ Access the project with your favourite browser. You should see similar welcome s
 1. Use the api.nasa.gov
   * the API-KEY is `N7LkblDsc5aen05FJqBQ8wU4qSdmsftwJagVK7UD`
   * documentation: https://api.nasa.gov/neo/?api_key=N7LkblDsc5aen05FJqBQ8wU4qSdmsftwJagVK7UD
-  
+
 1. Write a command
   * to request the data from the last 3 days from nasa api
   * response contains count of NEOs
@@ -80,7 +80,7 @@ Access the project with your favourite browser. You should see similar welcome s
 1. Create a route `/neo/fastest`
   * display a DB document data with the fastest asteroid
   * format JSON
-  
+
 1. Test your application
 
 
@@ -97,17 +97,17 @@ Access the project with your favourite browser. You should see similar welcome s
       echo "\"" . $str1 . "\" does not contain \"" . $str2 . "\"";
   }
   ```
-  
+
   The output will be:
-  
+
   `"foobardoo" does not contain "foo"`
-  
+
   **Why? How can this code be fixed to work correctly?**
-  
+
   *Save your solution under `bonusTasksSolutions.php`*
-  
+
 1. How many elements contains the $_POST data after executing this request and why?
-  
+
   ```
   // JavaScript, jQuery
   $.ajax({
@@ -117,15 +117,15 @@ Access the project with your favourite browser. You should see similar welcome s
       contentType: 'application/json'
   });
   ```
-  
+
   *Save your solution under `bonusTasksSolutions.php`*
-  
+
 1. Solve the statement. Write down your solution.
-  
+
   ```
   A bread with butter cost 1.10 €. The bread is 1€ more expensive then the butter. How much does the butter cost?
   ```
-  
+
   *Save your solution under `bonusTasksSolutions.php`*
 
 1. Go to app/config/config.yml and add the following yaml structure. **(NOTICE: ping is a child-key of test)**
@@ -145,3 +145,8 @@ Access the project with your favourite browser. You should see similar welcome s
 
 # That's it!
 ## Thank you for your participation! Good luck submitting your results!
+
+I had to add 192.168.99.1 to:
+web/config.php
+web/app_dev.php
+In order to enable dev mode.  If you environment is different this will need to be updated.
