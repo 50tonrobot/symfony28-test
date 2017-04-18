@@ -3,15 +3,16 @@
 namespace Neo\NasaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/nasa")
+     * @Route("/")
      */
-    public function indexAction()
+    public function helloAction()
     {
-        return $this->render('NasaBundle:Default:index.html.twig');
+        return new JsonResponse(array('hello' => 'world'));
     }
 }
