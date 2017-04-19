@@ -14,6 +14,11 @@ class Neo
   /**
    * @MongoDB\Id
    */
+   protected $_id;
+
+  /**
+   * @MongoDB\Field(type="int")
+   */
    protected $neo_reference_id;
 
    /**

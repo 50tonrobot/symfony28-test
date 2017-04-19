@@ -37,7 +37,7 @@ class DefaultController extends Controller
          if(isset($params["KilometersPerHour"]))
          {
            $neo = new Neo();
-           $neo->setId($params["NeoReferenceId"]);
+           $neo->setNeoReferenceId($params["NeoReferenceId"]);
            $neo->setDate($params["Date"]);
            $neo->setName($params["Name"]);
            $neo->setKilometersPerHour($params["KilometersPerHour"]);
