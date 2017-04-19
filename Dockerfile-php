@@ -1,7 +1,7 @@
 FROM php:5.6-fpm
 COPY ./code /code
 RUN apt-get update && apt-get install -y \
-    vim \
+    vim locate rsync \
     autoconf g++ make openssl libssl-dev \
     libcurl4-openssl-dev pkg-config libsasl2-dev libpcre3-dev \
     zip unzip \
