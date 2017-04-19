@@ -40,7 +40,7 @@ twig:
 doctrine_mongodb:
     connections:
         default:
-            server: mongodb://localhost:27017
+            server: mongodb://symfony28test_mongodb_1:27017
             options: {}
     default_database: test
     document_managers:

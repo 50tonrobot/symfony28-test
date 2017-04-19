@@ -14,10 +14,10 @@ class Neo
   /**
    * @MongoDB\Id
    */
-   protected $_id;
+   protected $id;
 
   /**
-   * @MongoDB\Field(type="int")
+   * @MongoDB\Field(type="int") @MongoDB\Index(unique=true, order="asc")
    */
    protected $neo_reference_id;
 
@@ -49,7 +49,7 @@ class Neo
      */
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     /**

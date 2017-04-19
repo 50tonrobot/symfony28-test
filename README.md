@@ -150,3 +150,14 @@ I had to add 192.168.99.1 to:
 web/config.php
 web/app_dev.php
 In order to enable dev mode.  If you environment is different this will need to be updated.
+
+Useful commands
+
+Create the database schema on the MongoDB Server
+php /code/app/console doctrine:mongodb:schema:update
+
+Generates the Getters and Setters for your documents
+php /code/app/console doctrine:mongodb:generate:documents NasaBundle
+
+Generate Repository Class
+php /code/app/console doctrine:mongodb:generate:repositories NasaBundle

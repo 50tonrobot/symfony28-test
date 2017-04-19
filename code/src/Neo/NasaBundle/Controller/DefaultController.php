@@ -37,6 +37,7 @@ class DefaultController extends Controller
          if(isset($params["KilometersPerHour"]))
          {
            $neo = new Neo();
+           $neo->setNeoReferenceId($params["NeoReferenceId"]);
            $neo->setDate($params["Date"]);
            $neo->setName($params["Name"]);
            $neo->setKilometersPerHour($params["KilometersPerHour"]);
@@ -46,12 +47,16 @@ class DefaultController extends Controller
            $dm->persist($neo);
            $dm->flush();
 
-           return new Response('Created product id '.$neo->getId());
+           error_log("I am still here");
+           error_log(print_r($dm,1));           
+
+           return new Response('Created Neo id '.$neo->getId());
          }
      }
 
     /**
      * @Route("/neo")
+     * @Method("GET")
      */
     public function getNeoAction()
     {

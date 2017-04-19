@@ -1,3 +1,7 @@
 [2017-04-17 20:53:16] php.DEBUG: unlink(web/bundles/framework): No such file or directory {"type":2,"file":"/code/vendor/symfony/symfony/src/Symfony/Component/Filesystem/Filesystem.php","line":178,"level":28928} []
 [2017-04-18 16:58:59] php.DEBUG: rename(): The first argument to copy() function cannot be a directory {"type":2,"file":"/code/vendor/symfony/symfony/src/Symfony/Component/Filesystem/Filesystem.php","line":278,"level":28928} []
 [2017-04-18 16:58:59] php.DEBUG: rename(/code/app/cache/dev,/code/app/cache/de~): Invalid cross-device link {"type":2,"file":"/code/vendor/symfony/symfony/src/Symfony/Component/Filesystem/Filesystem.php","line":278,"level":28928} []
+[2017-04-19 12:26:33] doctrine.DEBUG: MongoDB query: {"getIndexInfo":true,"db":"test","collection":"Neo"} [] []
+[2017-04-19 12:29:58] doctrine.DEBUG: MongoDB query: {"getIndexInfo":true,"db":"test","collection":"Neo"} [] []
+[2017-04-19 13:02:17] doctrine.DEBUG: MongoDB query: {"getIndexInfo":true,"db":"test","collection":"Neo"} [] []
+[2017-04-19 13:02:17] doctrine.DEBUG: MongoDB query: {"ensureIndex":true,"keys":{"neo_reference_id":1},"options":{"unique":true,"sparse":false,"w":1},"db":"test","collection":"Neo"} [] []
