@@ -8,8 +8,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Neo\NasaBundle\Document\Neo;
-//this shouldn't be here
-use Guzzle\Http\Client;
 
 class DefaultController extends Controller
 {
@@ -23,7 +21,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/neo")
-     * @Method("PUT")
+     * @Method("POST")
      */
      public function createAction()
      {
@@ -33,6 +31,8 @@ class DefaultController extends Controller
          {
              $params = json_decode($content, true);
          }
+
+         //make this a find and modify
 
          if(isset($params["KilometersPerHour"]))
          {
@@ -64,15 +64,6 @@ class DefaultController extends Controller
     {
 
       // Create a client and provide a base URL
-      $client = new Client('https://api.nasa.gov/neo/rest/v1');
-
-      $request = $client->get('feed?start_date=2017-03-01&end_date=2017-03-05&detailed=true&api_key=N7LkblDsc5aen05FJqBQ8wU4qSdmsftwJagVK7UD');
-
-      $response = $request->send();
-
-      $output = new Response($response->getBody());
-      $output->headers->set('Content-Type', 'application/json');
-
-      return $output;
+      return new Response("Don't get too complex, it's a test.");
     }
 }
