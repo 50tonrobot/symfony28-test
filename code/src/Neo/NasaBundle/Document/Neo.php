@@ -36,5 +36,102 @@ class Neo
     * @MongoDB\Field(type="boolean")
     */
    protected $is_potentially_hazardous_asteroid;
+
+    /**
+     * Get neoReferenceId
+     *
+     * @return id $neoReferenceId
+     */
+    public function getNeoReferenceId()
+    {
+        return $this->neo_reference_id;
+    }
+
+    /**
+     * Set date
+     *
+     * @param date $date
+     * @return $this
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return date $date
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string $name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set kilometersPerHour
+     *
+     * @param float $kilometersPerHour
+     * @return $this
+     */
+    public function setKilometersPerHour($kilometersPerHour)
+    {
+        $this->kilometers_per_hour = $kilometersPerHour;
+        return $this;
+    }
+
+    /**
+     * Get kilometersPerHour
+     *
+     * @return float $kilometersPerHour
+     */
+    public function getKilometersPerHour()
+    {
+        return $this->kilometers_per_hour;
+    }
+
+    /**
+     * Set isPotentiallyHazardousAsteroid
+     *
+     * @param boolean $isPotentiallyHazardousAsteroid
+     * @return $this
+     */
+    public function setIsPotentiallyHazardousAsteroid($isPotentiallyHazardousAsteroid)
+    {
+        $this->is_potentially_hazardous_asteroid = $isPotentiallyHazardousAsteroid;
+        return $this;
+    }
+
+    /**
+     * Get isPotentiallyHazardousAsteroid
+     *
+     * @return boolean $isPotentiallyHazardousAsteroid
+     */
+    public function getIsPotentiallyHazardousAsteroid()
+    {
+        return $this->is_potentially_hazardous_asteroid;
+    }
 }
-?>

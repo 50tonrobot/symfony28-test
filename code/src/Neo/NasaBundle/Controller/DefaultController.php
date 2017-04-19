@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
+use Neo\NasaBundle\Document\Neo;
 //this shouldn't be here
 use Guzzle\Http\Client;
 
@@ -19,6 +19,23 @@ class DefaultController extends Controller
     {
       return new JsonResponse(array('hello' => 'world'));
     }
+
+    /**
+     * @Route("/neo")
+     * @Method("POST")
+     */
+     public function createAction()
+     {
+         $product = new Product();
+         $product->setName('A Foo Bar');
+         $product->setPrice('19.99');
+
+         $dm = $this->get('doctrine_mongodb')->getManager();
+         $dm->persist($product);
+         $dm->flush();
+
+         return new Response('Created product id '.$product->getId());
+     }
 
     /**
      * @Route("/neo")
