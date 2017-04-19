@@ -40,9 +40,9 @@ twig:
 doctrine_mongodb:
     connections:
         default:
-            server: "%mongodb.server%"
+            server: mongodb://localhost:27017
             options: {}
-    default_database: "%mongodb.default_database%"
+    default_database: test
     document_managers:
         default:
             auto_mapping: true
