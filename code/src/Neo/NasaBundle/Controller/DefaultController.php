@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Neo\NasaBundle\Document\Neo;
 //this shouldn't be here
 use Guzzle\Http\Client;
@@ -26,15 +27,27 @@ class DefaultController extends Controller
      */
      public function createAction()
      {
-         $product = new Product();
-         $product->setName('A Foo Bar');
-         $product->setPrice('19.99');
+         $params = array();
+         $content = $this->get("request")->getContent();
+         if (!empty($content))
+         {
+             $params = json_decode($content, true);
+         }
 
-         $dm = $this->get('doctrine_mongodb')->getManager();
-         $dm->persist($product);
-         $dm->flush();
+         if(isset($params["KilometersPerHour"]))
+         {
+           $neo = new Neo();
+           $neo->setDate($params["Date"]);
+           $neo->setName($params["Name"]);
+           $neo->setKilometersPerHour($params["KilometersPerHour"]);
+           $neo->setIsPotentiallyHazardousAsteroid($params["IsPotentiallyHazardousAsteroid"]);
 
-         return new Response('Created product id '.$product->getId());
+           $dm = $this->get('doctrine_mongodb')->getManager();
+           $dm->persist($neo);
+           $dm->flush();
+
+           return new Response('Created product id '.$neo->getId());
+         }
      }
 
     /**
