@@ -14,11 +14,6 @@ class Neo
   /**
    * @MongoDB\Id
    */
-   protected $id;
-
-  /**
-   * @MongoDB\Field(type="int") @MongoDB\Index(unique=true, order="asc")
-   */
    protected $neo_reference_id;
 
    /**

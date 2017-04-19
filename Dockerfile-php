@@ -9,9 +9,9 @@ RUN apt-get update && apt-get install -y \
     && echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini \
     && curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony \
     && chmod a+x /usr/local/bin/symfony \
-    && mkdir -p /code/app/cache/prod \
-    && chmod -R 777 /code/app/{cache,logs} \
+    && mkdir -p /code/app/cache/prod /code/app/logs \
+    && chmod -R 777 /code/app/cache /code/app/logs \
     && echo "rsync -ua /code/. /code-copy" > /usr/local/bin/saveChanges \
     && echo "rm -rf /code/app/cache/prod/*" > /usr/local/bin/clearCache \
     && echo "rsync -ua /code-copy/. /code; clearCache" > /usr/local/bin/reloadCode \
-    && chmod a+x /usr/local/bin/{saveChanges,clearCache,reloadCode} \
+    && chmod a+x /usr/local/bin/saveChanges /usr/local/bin/clearCache /usr/local/bin/reloadCode \

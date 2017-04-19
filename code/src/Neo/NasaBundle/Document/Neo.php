@@ -14,11 +14,6 @@ class Neo
   /**
    * @MongoDB\Id
    */
-   protected $id;
-
-  /**
-   * @MongoDB\Field(type="int") @MongoDB\Index(unique=true, order="asc")
-   */
    protected $neo_reference_id;
 
    /**
@@ -43,31 +38,9 @@ class Neo
    protected $is_potentially_hazardous_asteroid;
 
     /**
-     * Get id
-     *
-     * @return id $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set neoReferenceId
-     *
-     * @param int $neoReferenceId
-     * @return $this
-     */
-    public function setNeoReferenceId($neoReferenceId)
-    {
-        $this->neo_reference_id = $neoReferenceId;
-        return $this;
-    }
-
-    /**
      * Get neoReferenceId
      *
-     * @return int $neoReferenceId
+     * @return id $neoReferenceId
      */
     public function getNeoReferenceId()
     {

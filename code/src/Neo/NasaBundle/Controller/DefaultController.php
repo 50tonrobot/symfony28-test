@@ -23,7 +23,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/neo")
-     * @Method("POST")
+     * @Method("PUT")
      */
      public function createAction()
      {
@@ -37,18 +37,20 @@ class DefaultController extends Controller
          if(isset($params["KilometersPerHour"]))
          {
            $neo = new Neo();
-           $neo->setNeoReferenceId($params["NeoReferenceId"]);
+           $neo->setId($params["NeoReferenceId"]);
            $neo->setDate($params["Date"]);
            $neo->setName($params["Name"]);
            $neo->setKilometersPerHour($params["KilometersPerHour"]);
            $neo->setIsPotentiallyHazardousAsteroid($params["IsPotentiallyHazardousAsteroid"]);
 
            $dm = $this->get('doctrine_mongodb')->getManager();
+           $dm->getSchemaManager()->ensureIndexes();
            $dm->persist($neo);
-           $dm->flush();
-
-           error_log("I am still here");
-           error_log(print_r($dm,1));           
+           try {
+               $dm->flush();
+           } catch (MongoCursorException $e) {
+               return new Response('Already exists');
+           }
 
            return new Response('Created Neo id '.$neo->getId());
          }
