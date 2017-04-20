@@ -25,6 +25,11 @@ docker exec -it symfony28test_php_1 /bin/bash
 This will open a terminal into the PHP box where symfony is running. From there you
 can test the command referenced in the test.
 
+Your container names should be as follows:
+- symfony28test_web_1
+- symfony28test_mongodb_1
+- symfony28test_php_1
+
 5. Execute the command by entering:
 ```
 php /code/app/console app:fetch-neo-data
