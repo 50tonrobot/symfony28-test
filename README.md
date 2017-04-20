@@ -3,9 +3,11 @@ This is running on Docker.
 To build the images you only need to have a docker setup.
 
 1.  Clone this repo.
-2.  cd into the symfony28-test folder.
-3.  run docker-compose up
-
+2.  From a terminal interface, change directory into the symfony28-test folder.
+3.  run 
+```
+docker-compose up
+```
 After the build is complete it should automatically start the containers.
 Once the containers are loaded up, you can browse to the IP where your
 container is running.
@@ -16,6 +18,17 @@ http://localhost
 or
 http://192.168.99.100
 
+4. In the same terminal window run:
+```
+docker exec -it symfony28test_php_1 /bin/bash
+```
+This will open a terminal into the PHP box where symfony is running. From there you
+can test the command referenced in the test.
+
+5. Execute the command by entering:
+```
+php /code/app/console app:fetch-neo-data
+```
 
 
 
