@@ -48,6 +48,14 @@ class DefaultController extends Controller
     {
         $FastFacts = $this->container->get('neo.fastFacts');
         $NeoFetchService = $this->container->get('neo.fetchData');
-        return new JsonResponse($NeoFetchService->neoCollectionAdapter($FastFacts->fetchFastest()));
+        $fastestNeos = $FastFacts->fetchFastest();
+        if(count($fastestNeos))
+        {
+          return new JsonResponse($NeoFetchService->neoCollectionAdapter($fastestNeos));
+        }
+        else
+        {
+          return new Response("No data loaded, please run: php /code/app/console app:fetch-neo-data");
+        }
     }
 }
