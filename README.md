@@ -1,10 +1,10 @@
-This is running on Docker.
+# This is running on Docker.
 
 To build the images you only need to have a docker setup.
 
 1.  Clone this repo.
 2.  From a terminal interface, change directory into the symfony28-test folder.
-3.  run 
+3.  run
 ```
 docker-compose up
 ```
@@ -29,6 +29,7 @@ can test the command referenced in the test.
 ```
 php /code/app/console app:fetch-neo-data
 ```
+6. The other routes can be tested using the given route endpoints as described in the test.
 
 
 
