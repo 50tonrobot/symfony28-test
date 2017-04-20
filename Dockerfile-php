@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev pkg-config libsasl2-dev libpcre3-dev \
     zip unzip \
     && pecl install mongo \
+    && docker-php-ext-install zip \
     && echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini \
     && curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony \
     && chmod a+x /usr/local/bin/symfony \
@@ -14,4 +15,6 @@ RUN apt-get update && apt-get install -y \
     && echo "rsync -ua /code/. /code-copy" > /usr/local/bin/saveChanges \
     && echo "rm -rf /code/app/cache/prod/*" > /usr/local/bin/clearCache \
     && echo "rsync -ua /code-copy/. /code; clearCache" > /usr/local/bin/reloadCode \
-    && chmod a+x /usr/local/bin/saveChanges /usr/local/bin/clearCache /usr/local/bin/reloadCode \
+    && echo "php /code/composer.phar" > /usr/local/bin/composer \
+    && chmod a+x /usr/local/bin/saveChanges /usr/local/bin/clearCache /usr/local/bin/reloadCode /usr/local/bin/composer \
+    && ln -s /code/vendor/symfony/symfony/phpunit /usr/local/bin/phpunit \

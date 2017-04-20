@@ -6,7 +6,7 @@ To build the images you only need to have a docker setup.
 2.  From a terminal interface, change directory into the symfony28-test folder.
 3.  run
 ```
-docker-compose up
+docker-compose up -d
 ```
 After the build is complete it should automatically start the containers.
 Once the containers are loaded up, you can browse to the IP where your
