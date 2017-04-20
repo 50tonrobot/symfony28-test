@@ -48,14 +48,14 @@ class NasaWebService {
       }
     }
 
-    $returnObject["neoArray"] = $this->neoCollectionAdapter($neoDocumentArray);
+    $returnObject["neoDocuments"] = $neoDocumentArray;
 
     return $returnObject;
   }
 
   public function neoCollectionAdapter($neoDocumentArray)
   {
-    //Allow a single Neo Document to be passed, and wrapped into an array.
+    //Allow a single Neo Document to be passed, and wrapped into an array
     if(gettype($neoDocumentArray) != 'array')
     {
       $neoDocumentArray = array($neoDocumentArray);

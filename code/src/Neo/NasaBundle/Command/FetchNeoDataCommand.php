@@ -27,9 +27,9 @@ class FetchNeoDataCommand extends ContainerAwareCommand
     {
         $NeoFetchService = $this->getContainer()->get('neo.fetchData');
         $returnObject = $NeoFetchService->fetchNeoData();
-        foreach ($returnObject["neoArray"] as $index => $currentNeo) {
+        foreach ($returnObject["neoDocuments"] as $index => $neoDocument) {
           $dm = $this->getContainer()->get('doctrine_mongodb')->getManager();
-          $neo = $dm->getRepository('NasaBundle:Neo')->findOneBy(array( 'neo_reference_id' => $currentNeo['neo_reference_id'] ));
+          $neo = $dm->getRepository('NasaBundle:Neo')->findOneBy(array( 'neo_reference_id' => $neoDocument->getNeoReferenceId() ));
           if(is_null($neo)===true)
           {
             $dm->persist($neoDocument);

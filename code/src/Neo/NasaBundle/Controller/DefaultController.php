@@ -29,8 +29,16 @@ class DefaultController extends Controller
         $neoArray = $dm->getRepository('NasaBundle:Neo')->findBy(
             array('is_potentially_hazardous_asteroid' => true)
         );
-        $NeoFetchService = $this->container->get('neo.fetchData');
-        return new JsonResponse($NeoFetchService->neoCollectionAdapter($neoArray));
+
+        if(count($neoArray))
+        {
+          $NeoFetchService = $this->container->get('neo.fetchData');
+          return new JsonResponse($NeoFetchService->neoCollectionAdapter($neoArray));
+        }
+        else
+        {
+          return new Response("No data loaded, please run: php /code/app/console app:fetch-neo-data");
+        }
     }
 
     /**

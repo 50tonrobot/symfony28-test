@@ -139,6 +139,7 @@ class appDevDebugProjectContainer extends Container
             'monolog.logger.templating' => 'getMonolog_Logger_TemplatingService',
             'monolog.logger.translation' => 'getMonolog_Logger_TranslationService',
             'neo.document' => 'getNeo_DocumentService',
+            'neo.fastfacts' => 'getNeo_FastfactsService',
             'neo.fetchdata' => 'getNeo_FetchdataService',
             'profiler' => 'getProfilerService',
             'profiler_listener' => 'getProfilerListenerService',
@@ -1737,6 +1738,19 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'neo.fastfacts' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Neo\NasaBundle\Service\FastFacts A Neo\NasaBundle\Service\FastFacts instance
+     */
+    protected function getNeo_FastfactsService()
+    {
+        return $this->services['neo.fastfacts'] = new \Neo\NasaBundle\Service\FastFacts($this->get("doctrine.odm.mongodb.document_manager")->getRepository("NasaBundle:Neo"));
+    }
+
+    /**
      * Gets the 'neo.fetchdata' service.
      *
      * This service is shared.
@@ -1746,7 +1760,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getNeo_FetchdataService()
     {
-        return $this->services['neo.fetchdata'] = new \Neo\NasaBundle\Service\NasaWebService($this->get('guzzle'));
+        return $this->services['neo.fetchdata'] = new \Neo\NasaBundle\Service\NasaWebService($this->get('guzzle'), 'N7LkblDsc5aen05FJqBQ8wU4qSdmsftwJagVK7UD');
     }
 
     /**
@@ -2041,7 +2055,7 @@ class appDevDebugProjectContainer extends Container
 
         $e = new \Symfony\Component\Security\Http\AccessMap();
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($e, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'main', $a, $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE)), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '58f7e5c0dedd95.04372122', $a, $c), 3 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $e, $c)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), new \Symfony\Component\Security\Http\HttpUtils($d, $d), 'main', NULL, NULL, NULL, $a, false));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($e, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'main', $a, $this->get('debug.event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE)), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '58f8cb9b91c6c0.81958192', $a, $c), 3 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $e, $c)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), new \Symfony\Component\Security\Http\HttpUtils($d, $d), 'main', NULL, NULL, NULL, $a, false));
     }
 
     /**
@@ -3291,7 +3305,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('58f7e5c0dedd95.04372122')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('58f8cb9b91c6c0.81958192')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -3477,7 +3491,8 @@ class appDevDebugProjectContainer extends Container
             'secret' => 'JU5Oq1V5nW0xVO7AMk760gpiOI80HbuysRxSlLhOjjvqLmZwMXTYmsgfjutaDRhv',
             'mongodb.server' => 'mongodb://localhost:27017',
             'mongodb.default_database' => 'test',
-            'nasa_service_endpoint' => 'https://api.nasa.gov/neo/rest/v1',
+            'nasa_service.endpoint' => 'https://api.nasa.gov/neo/rest/v1',
+            'nasa_service.api_key' => 'N7LkblDsc5aen05FJqBQ8wU4qSdmsftwJagVK7UD',
             'locale' => 'en',
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
