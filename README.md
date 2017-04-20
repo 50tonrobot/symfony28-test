@@ -1,3 +1,25 @@
+This is running on Docker.
+
+To build the images you only need to have a docker setup.
+
+1.  Clone this repo.
+2.  cd into the symfony28-test folder.
+3.  run docker-compose up
+
+After the build is complete it should automatically start the containers.
+Once the containers are loaded up, you can browse to the IP where your
+container is running.
+
+Usually
+
+http://localhost
+or
+http://192.168.99.100
+
+
+
+
+
 # Basic PHP and Symfony 2.8 interview
 
 Dear candidate, please follow this readme and solve all questions.
@@ -145,19 +167,3 @@ Access the project with your favourite browser. You should see similar welcome s
 
 # That's it!
 ## Thank you for your participation! Good luck submitting your results!
-
-I had to add 192.168.99.1 to:
-web/config.php
-web/app_dev.php
-In order to enable dev mode.  If you environment is different this will need to be updated.
-
-Useful commands
-
-Create the database schema on the MongoDB Server
-php /code/app/console doctrine:mongodb:schema:update
-
-Generates the Getters and Setters for your documents
-php /code/app/console doctrine:mongodb:generate:documents NasaBundle
-
-Generate Repository Class
-php /code/app/console doctrine:mongodb:generate:repositories NasaBundle
