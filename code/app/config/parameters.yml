@@ -3,4 +3,5 @@ parameters:
     secret: JU5Oq1V5nW0xVO7AMk760gpiOI80HbuysRxSlLhOjjvqLmZwMXTYmsgfjutaDRhv
     mongodb.server: 'mongodb://localhost:27017'
     mongodb.default_database: test
-    nasa_service_endpoint: 'https://api.nasa.gov/neo/rest/v1'
+    nasa_service.endpoint: 'https://api.nasa.gov/neo/rest/v1'
+    nasa_service.api_key: 'N7LkblDsc5aen05FJqBQ8wU4qSdmsftwJagVK7UD'

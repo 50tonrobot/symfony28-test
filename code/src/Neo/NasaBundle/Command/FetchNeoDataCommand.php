@@ -2,6 +2,7 @@
 namespace Neo\NasaBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -14,33 +15,26 @@ class FetchNeoDataCommand extends ContainerAwareCommand
           ->setName('app:fetch-neo-data')
 
           // the short description shown while running "php app/console list"
-          ->setDescription('Fetches data on Near Earth Objects collected by Nasa over the last 3 days.')
+          ->setDescription('Fetches data on Near Earth Objects collected by Nasa over the previous 3 days.')
 
           // the full command description shown when running the command with
           // the "--help" option
-          ->setHelp('This command allows you Fetch Neo data and has no options...')
+          ->setHelp('This command Fetches Neo data over the previous 3 days, no options available')
       ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Whoa!');
-
         $NeoFetchService = $this->getContainer()->get('neo.fetchData');
         $returnObject = $NeoFetchService->fetchNeoData();
-        foreach ($returnObject["neoDocuments"] as $index => $neoDocument) {
+        foreach ($returnObject["neoArray"] as $index => $currentNeo) {
           $dm = $this->getContainer()->get('doctrine_mongodb')->getManager();
-          $neo = $dm->getRepository('NeoRepository')->findOneBy(array('neo_reference_id' => $neoDocument->getNeoReferenceId()));
-          $output->writeln("this is a neo: ".$neo->getNeoReferenceId());
-          /*
-          $dm->getSchemaManager()->ensureIndexes();
-          $dm->persist($neoDocument);
-          try {
-              $dm->flush();
-          } catch (MongoCursorException $e) {
-              return new Response('Already exists');
+          $neo = $dm->getRepository('NasaBundle:Neo')->findOneBy(array( 'neo_reference_id' => $currentNeo['neo_reference_id'] ));
+          if(is_null($neo)===true)
+          {
+            $dm->persist($neoDocument);
+            $dm->flush();
           }
-          */
         }
         $output->writeln($returnObject["elementCount"]." Neo's found");
     }

@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Neo\NasaBundle\Document\Neo;
+use Neo\NasaBundle\Repository\NeoRepository;
 
 class DefaultController extends Controller
 {
@@ -20,50 +21,25 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/neo")
-     * @Method("POST")
+     * @Route("/neo/hazardous")
      */
-     public function createAction()
-     {
-         $params = array();
-         $content = $this->get("request")->getContent();
-         if (!empty($content))
-         {
-             $params = json_decode($content, true);
-         }
-
-         //make this a find and modify
-
-         if(isset($params["KilometersPerHour"]))
-         {
-           $neo = new Neo();
-           $neo->setNeoReferenceId($params["NeoReferenceId"]);
-           $neo->setDate($params["Date"]);
-           $neo->setName($params["Name"]);
-           $neo->setKilometersPerHour($params["KilometersPerHour"]);
-           $neo->setIsPotentiallyHazardousAsteroid($params["IsPotentiallyHazardousAsteroid"]);
-
-           $dm = $this->get('doctrine_mongodb')->getManager();
-           $dm->getSchemaManager()->ensureIndexes();
-           $dm->persist($neo);
-           try {
-               $dm->flush();
-           } catch (MongoCursorException $e) {
-               return new Response('Already exists');
-           }
-
-           return new Response('Created Neo id '.$neo->getId());
-         }
-     }
+    public function renderHazardousView()
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $neoArray = $dm->getRepository('NasaBundle:Neo')->findBy(
+            array('is_potentially_hazardous_asteroid' => true)
+        );
+        $NeoFetchService = $this->container->get('neo.fetchData');
+        return new JsonResponse($NeoFetchService->neoCollectionAdapter($neoArray));
+    }
 
     /**
-     * @Route("/neo")
-     * @Method("GET")
+     * @Route("/neo/fastest")
      */
-    public function getNeoAction()
+    public function renderFastestView()
     {
-
-      // Create a client and provide a base URL
-      return new Response("Don't get too complex, it's a test.");
+        $FastFacts = $this->container->get('neo.fastFacts');
+        $NeoFetchService = $this->container->get('neo.fetchData');
+        return new JsonResponse($NeoFetchService->neoCollectionAdapter($FastFacts->fetchFastest()));
     }
 }

@@ -7,11 +7,17 @@ services:
     ## guzzle http client
     guzzle:
         class: Guzzle\Http\Client
-        arguments: ['%nasa_service_endpoint%']
+        arguments: ['%nasa_service.endpoint%']
 
     neo.document:
         class: Neo\NasaBundle\Document\Neo
 
     neo.fetchData:
         class: Neo\NasaBundle\Service\NasaWebService
-        arguments: [@guzzle]
+        arguments:
+          - @guzzle
+          - '%nasa_service.api_key%'
+
+    neo.fastFacts:
+      class: 'Neo\NasaBundle\Service\FastFacts'
+      arguments: ["@=service('doctrine.odm.mongodb.document_manager').getRepository('NasaBundle:Neo')"]
